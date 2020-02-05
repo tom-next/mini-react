@@ -4,7 +4,7 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            times: 0
+            times: 0,
         }
     }
 
@@ -17,7 +17,14 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        console.log("componentDidMount")
+        for (let i = 0; i < 100; i++) {
+            this.setState(prevState => {
+                console.log("App", prevState.times)
+                return {
+                    times: prevState.times + 1
+                }
+            })
+        }
     }
 
     onClick() {
@@ -49,6 +56,12 @@ class Demo extends React.Component {
     componentWillMount(){
         console.log(" Demo componentWillMount") 
     }
+
+    componentDidMount() {
+        for ( let i = 0; i < 100; i++) {
+            this.setState( {type: this.state.type + 1 })
+        }
+    }    
 
     onClick() {
         this.props.handleClick && this.props.handleClick()
